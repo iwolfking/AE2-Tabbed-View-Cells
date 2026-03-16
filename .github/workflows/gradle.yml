@@ -2,7 +2,7 @@ name: gradle.yml
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: write
