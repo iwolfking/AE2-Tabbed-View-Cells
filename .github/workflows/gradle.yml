@@ -2,10 +2,10 @@ name: gradle.yml
 on:
   push:
     branches:
-      - main  # adjust if you want other branches
+      - main
 
 permissions:
-  contents: write  # needed to create releases
+  contents: write
 
 jobs:
   build:
