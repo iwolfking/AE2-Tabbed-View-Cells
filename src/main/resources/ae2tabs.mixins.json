@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.iwolfking.ae2tabs.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ae2tabs.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "MixinMEStorageScreen",
+    "TabButtonAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
