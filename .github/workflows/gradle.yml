@@ -27,8 +27,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Create Release
+        uses: ncipollo/release-action@v1
         with:
-          name: ae2-tabs-${{ steps.vars.outputs.sha_short }}
-          path: build/libs/*.jar
+          tag: ${{ github.sha }}
+          artifacts: build/libs/*.jar
+          overwrite: true
