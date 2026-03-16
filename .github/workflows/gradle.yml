@@ -36,7 +36,7 @@ jobs:
       - name: Create Release and Upload JAR
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ github.sha }}
+          tag: ${{ steps.vars.outputs.sha_short }}
           name: ae2-tabs-${{ steps.vars.outputs.sha_short }}
           artifacts: build/libs/*.jar
           allowUpdates: true
