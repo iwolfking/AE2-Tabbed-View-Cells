@@ -1,6 +1,12 @@
 name: gradle.yml
 on:
-  push
+  push:
+    branches:
+      - main  # adjust if you want other branches
+
+permissions:
+  contents: write  # needed to create releases
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,16 +26,17 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
-      - name: Compute Short Commit Hash
+      - name: Compute short commit hash
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Create Release
+      - name: Create Release and Upload JAR
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.sha }}
+          name: ae2-tabs-${{ steps.vars.outputs.sha_short }}
           artifacts: build/libs/*.jar
-          overwrite: true
+          allowUpdates: true
