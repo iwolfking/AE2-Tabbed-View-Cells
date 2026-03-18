@@ -1,4 +1,4 @@
-package xyz.iwolfking.ae2tabs.mixins;
+package xyz.iwolfking.ae2tabs.mixins.client;
 
 import appeng.client.gui.widgets.TabButton;
 import net.minecraft.world.item.ItemStack;

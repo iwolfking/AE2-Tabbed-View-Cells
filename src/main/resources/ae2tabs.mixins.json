@@ -5,10 +5,11 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "ae2tabs.refmap.json",
   "mixins": [
+    "server.MixinFillCraftingGridFromRecipePacket"
   ],
   "client": [
-    "MixinMEStorageScreen",
-    "TabButtonAccessor"
+    "client.MixinMEStorageScreen",
+    "client.TabButtonAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

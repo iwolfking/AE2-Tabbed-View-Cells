@@ -1,4 +1,4 @@
-package xyz.iwolfking.ae2tabs.mixins;
+package xyz.iwolfking.ae2tabs.mixins.client;
 
 import appeng.api.config.IncludeExclude;
 import appeng.api.config.TerminalStyle;
