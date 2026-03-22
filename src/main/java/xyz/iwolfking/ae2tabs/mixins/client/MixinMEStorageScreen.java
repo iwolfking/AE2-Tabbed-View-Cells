@@ -32,6 +32,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import xyz.iwolfking.ae2tabs.config.TabbedViewCellsConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +70,7 @@ public abstract class MixinMEStorageScreen<C extends MEStorageMenu> extends AEBa
     @Inject(method = "createPartitionList", at = @At("HEAD"), cancellable = true)
     private void ae2tabs$overridePartition(List<ItemStack> viewCells,
                                            CallbackInfoReturnable<IPartitionList> cir) {
-        if(!supportsViewCells) {
+        if(!supportsViewCells || TabbedViewCellsConfig.CLIENT.disableTabs.get()) {
             return;
         }
 
@@ -91,7 +92,7 @@ public abstract class MixinMEStorageScreen<C extends MEStorageMenu> extends AEBa
 
     @Inject(method = "init", at = @At("TAIL"), remap = true)
     private void ae2tabs$init(CallbackInfo ci) {
-        if(!supportsViewCells) {
+        if(!supportsViewCells || TabbedViewCellsConfig.CLIENT.disableTabs.get()) {
             return;
         }
 
@@ -101,7 +102,7 @@ public abstract class MixinMEStorageScreen<C extends MEStorageMenu> extends AEBa
 
     @Unique
     private void ae2tabs$rebuildTabs() {
-        if(!supportsViewCells) {
+        if(!supportsViewCells || TabbedViewCellsConfig.CLIENT.disableTabs.get()) {
             return;
         }
 
@@ -165,7 +166,8 @@ public abstract class MixinMEStorageScreen<C extends MEStorageMenu> extends AEBa
             remap = true
     )
     private void ae2tabs$redirectPartition(Repo repo, IPartitionList original) {
-        if(!supportsViewCells) {
+        if(!supportsViewCells || TabbedViewCellsConfig.CLIENT.disableTabs.get()) {
+            repo.setPartitionList(original);
             return;
         }
 
@@ -263,13 +265,12 @@ public abstract class MixinMEStorageScreen<C extends MEStorageMenu> extends AEBa
             ItemStack viewCell = currentViewCells.get(i);
             if (viewCell.isEmpty()) continue;
 
-            int tabIndex = i + 1; // 0 = All Items tab
+            int tabIndex = i + 1;
             if (tabIndex >= ae2tabs$tabs.size()) continue;
 
             TabButton tab = ae2tabs$tabs.get(tabIndex);
             ItemStack currentIcon = ((TabButtonAccessor)tab).getItem();
 
-            // Only update if it’s still the raw view cell
             if (ItemStack.isSame(currentIcon, viewCell)) {
                 ItemStack resolvedIcon = ae2tabs$getIconForViewCell(viewCell);
                 ((TabButtonAccessor)tab).setItem(resolvedIcon);
