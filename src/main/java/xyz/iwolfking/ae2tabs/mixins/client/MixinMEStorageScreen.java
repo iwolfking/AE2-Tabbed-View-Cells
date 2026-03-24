@@ -19,7 +19,6 @@ import appeng.util.prioritylist.IPartitionList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -114,7 +113,7 @@ public abstract class MixinMEStorageScreen<C extends MEStorageMenu> extends AEBa
         // All items tab
         TabButton allItemsBtn = new TabButton(
                 menu.getHost().getMainMenuIcon(),
-                new TextComponent("All Items"),
+                Component.literal("All Items"),
                 ir,
                 btn -> ae2tabs$selectTab(-1)
         );
