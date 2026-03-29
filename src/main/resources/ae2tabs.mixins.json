@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "xyz.iwolfking.ae2tabs.mixins",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "ae2tabs.refmap.json",
   "mixins": [
     "server.MixinFillCraftingGridFromRecipePacket"
