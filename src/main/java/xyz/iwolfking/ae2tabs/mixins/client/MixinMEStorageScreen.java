@@ -192,16 +192,17 @@ public abstract class MixinMEStorageScreen<C extends MEStorageMenu> extends AEBa
         int screenBottom = this.height;
         boolean nearFullHeight = (guiBottom >= screenBottom - 10);
 
-        if(config.getTerminalStyle().equals(TerminalStyle.TALL) || config.getTerminalStyle().equals(TerminalStyle.FULL) || nearFullHeight) {
-            List<Slot> viewCellSlots = menu.getSlots(SlotSemantics.VIEW_CELL);
-            Slot last = viewCellSlots.get(viewCellSlots.size() - 1);
-            int bottomY = last.y + 32;
-            x = getGuiLeft() + this.imageWidth + 8;
-            y = bottomY + index * 22;
-        } else {
-            x = getGuiLeft() + 8 + index * 22;
-            y = getGuiTop() - 22;
-        }
+//        if(config.getTerminalStyle().equals(TerminalStyle.TALL) || config.getTerminalStyle().equals(TerminalStyle.FULL) || nearFullHeight) {
+//            List<Slot> viewCellSlots = menu.getSlots(SlotSemantics.VIEW_CELL);
+//            Slot last = viewCellSlots.get(viewCellSlots.size() - 1);
+//            int bottomY = last.y + 32;
+//            x = getGuiLeft() + this.imageWidth + 8;
+//            y = bottomY + index * 22;
+//        } else {
+
+        x = getGuiLeft() + 8 + index * 22;
+        y = getGuiTop() - 22;
+
 
         tab.x = x;
         tab.y = y;
