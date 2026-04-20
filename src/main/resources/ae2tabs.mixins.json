@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "ae2tabs.refmap.json",
   "mixins": [
+    "server.MixinCraftingTermSlot",
     "server.MixinFillCraftingGridFromRecipePacket"
   ],
   "client": [
